@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          "Welcome to the Home Screen",
+          "Welcome to the Home Screen // Auth With Google ",
           style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
         ),
       ),

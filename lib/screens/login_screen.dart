@@ -71,6 +71,20 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Text("Don't have an account? Sign Up"),
             ),
+            const SizedBox(height: 16.0),
+
+            /// Google Sign-In Button
+            GestureDetector(
+              onTap: () async {
+                LoginController controller = LoginController();
+                await controller.googleSignIn(context);
+              },
+              child: const Image(
+                image: AssetImage('assets/icons/google.png'),
+                height: 50,
+                width: 50,
+              ),
+            ),
           ],
         ),
       ),
