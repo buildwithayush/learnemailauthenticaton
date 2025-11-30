@@ -16,7 +16,7 @@ class LoginController {
             SnackBar(content: Text("User Logged In Successfully")),
           );
           debugPrint("User Logged In Successfully");
-          Navigator.push(
+          Navigator.pushReplacement (
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
