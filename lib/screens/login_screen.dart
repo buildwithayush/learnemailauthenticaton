@@ -1,5 +1,5 @@
-
 import 'package:fireauthenti/common/common_widget.dart';
+import 'package:fireauthenti/controller/login_controller.dart';
 import 'package:fireauthenti/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +40,14 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 16.0),
             // Email TextFormField
             CommonWidget.buildTextFormField(
-              controller: TextEditingController(),
+              controller: emailController,
               labelText: 'Email',
               prefixIcon: Icons.email,
             ),
             const SizedBox(height: 16.0),
             // Password TextFormField
             CommonWidget.buildTextFormField(
-              controller: TextEditingController(),
+              controller: passwordController,
               labelText: 'Password',
               prefixIcon: Icons.lock,
               suffixIcon: Icons.visibility_off_outlined,
@@ -53,7 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 24.0),
 
             // Login Button
-            CommonWidget.buildButton('Login', () {}),
+            CommonWidget.buildButton('Login', () async {
+              LoginController controller = LoginController();
+              await controller.loginUser(
+                emailController.text,
+                passwordController.text,
+                context,
+              );
+            }),
             const SizedBox(height: 16.0),
             GestureDetector(
               onTap: () => Navigator.push(
