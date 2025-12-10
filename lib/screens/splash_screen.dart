@@ -4,6 +4,7 @@ import 'package:fireauthenti/screens/home_screen.dart';
 import 'package:fireauthenti/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,16 +16,34 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 3), () {
-      final _auth = FirebaseAuth.instance;
-      if (_auth.currentUser == null) {
+    Timer(const Duration(seconds: 3), () async {
+      // 1st Method
+
+      // final _auth = FirebaseAuth.instance;
+      // if (_auth.currentUser == null) {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const LoginScreen()),
+      //   );
+
+      // }
+      // else {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const HomeScreen()),
+      //   );
+      // }
+
+      // 2nd Method
+      SharedPreferences _pref = await SharedPreferences.getInstance();
+
+      if (_pref.getBool('isLoggedIn') == null ||
+          _pref.getBool('isLoggedIn') == false) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
         );
-        
-      }
-      else {
+      } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),

@@ -2,6 +2,7 @@ import 'package:fireauthenti/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -50,7 +51,7 @@ class LoginController {
     // Firebase login with Google Credential
     await _auth
         .signInWithCredential(credential)
-        .then((value) {
+        .then((value) async {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("User Logged In Successfully with Google")),
           );
@@ -59,6 +60,9 @@ class LoginController {
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
+          SharedPreferences _pref = await SharedPreferences.getInstance();
+           await _pref.setBool("isLoggedIn", true);
+
         })
         .onError((error, stackTrace) {
           ScaffoldMessenger.of(context).showSnackBar(
