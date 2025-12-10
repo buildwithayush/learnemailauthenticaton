@@ -1,4 +1,5 @@
 import 'package:fireauthenti/screens/login_screen.dart';
+import 'package:fireauthenti/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
