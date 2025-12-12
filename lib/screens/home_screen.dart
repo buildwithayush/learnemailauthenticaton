@@ -1,3 +1,5 @@
+import 'package:fireauthenti/common/common_widget.dart';
+import 'package:fireauthenti/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,14 +21,25 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            "Welcome to the Home Screen ",
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+      body: Column(
+        children: [
+          SizedBox(height: 32.0),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: CommonWidget.buildButton('Users', () {}),
           ),
-        ),
+
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: CommonWidget.buildButton(
+              'Products',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductsScreen()),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
