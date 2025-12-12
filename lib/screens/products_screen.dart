@@ -11,7 +11,6 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
-
     HomeController controller = HomeController();
     return Scaffold(
       appBar: AppBar(
@@ -28,15 +27,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
         ),
       ),
       body: ListView.builder(
-        itemCount: controller.products.length ,
-        itemBuilder: (context , index){
+        itemCount: controller.products.length,
+        itemBuilder: (context, index) {
           final product = controller.products[index];
           return ListTile(
-           title: Text(product['Name']),
-           subtitle: Text(product['Color']),
-           trailing: Text(product['Price'].toString()),
-          ); 
-          
+            title: Text(product.name),
+            subtitle: Text(product.color),
+            trailing: Text(product.price.toString()),
+          );
         },
       ),
     );
