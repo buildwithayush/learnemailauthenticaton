@@ -13,4 +13,12 @@ Map<String, dynamic> toMap() {
     };
   }
 
+  factory ProductsModel.fromMap(Map<String, dynamic> map) {
+    return ProductsModel(
+      name: map['Name'] ?? '',
+      color: map['color'] ?? '',
+      price: (map['price'] ?? 0).toDouble(),
+    );
+  }
+
 }

@@ -27,15 +27,29 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ),
       ),
-      
+      body: FutureBuilder(future: controller.fetchProducts(),
+       builder: (context, snapshot){
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+
+        return ListView.builder(
+          itemCount:snapshot.data!.length, 
+          itemBuilder: (context, index){
+            final product = snapshot.data![index];
+             return ListTile(
+                title: Text(product.name),
+                subtitle: Text(product.color),
+                trailing: Text(product.price.toString()),
+             );
+          });
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.uploadProducts(
-            ProductsModel(name: 'Banana', color: 'Yellow', price: 89),
-            
+            ProductsModel(name: 'Kiwi', color: 'Green', price: 200),
           );
-
-          
         },
         child: Icon(Icons.add),
       ),

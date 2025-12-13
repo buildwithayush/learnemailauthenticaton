@@ -17,4 +17,15 @@ class HomeController {
           debugPrint('Failed to upload product: $error');
         });
   }
+
+  Future<List<ProductsModel>> fetchProducts() async{
+   final products = await _firestore.collection('Products').get();
+
+  List<ProductsModel> allProducts = products.docs.map((product) => ProductsModel.fromMap(product.data())).toList();
+   
+  
+  return allProducts;
+  }
+
+
 }
