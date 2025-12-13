@@ -27,6 +27,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ),
       ),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.uploadProducts(
